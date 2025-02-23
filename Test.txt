@@ -1,0 +1,480 @@
+[
+  {
+    "id": "010101",
+    "questions": [
+      {
+        "qid": "q1",
+        "qdesc": "Arrays in JavaScript are defined by which of the following statements?",
+        "options": [
+          "It is an ordered list of values",
+          "It is an ordered list of objects",
+          "It is an ordered list of string",
+          "It is an ordered list of functions"
+        ]
+      },
+      {
+        "qid": "q2",
+        "qdesc": "What will be the output of the following JavaScript code?",
+        "qsnippet": "function compare(){<br/>let a=2;<br/>let b=2.0;<br/>if(a==b)<br/>return true;<br/>else<br/>return false;}",
+        "options": ["false", "compilation error", "true", "runtime error"]
+      },
+      {
+        "qid": "q3",
+        "qdesc": "Will the following JavaScript code work?",
+        "qsnippet": "var js = (function(x) {return x*x;}(10));",
+        "options": [
+          "Exception will be thrown",
+          "Memory leak",
+          "Error",
+          "Yes, perfectly"
+        ]
+      },
+      {
+        "qid": "q4",
+        "qdesc": "What will be the function of the following JavaScript program?",
+        "qsnippet": "var scope = 'js scope';<br/>function checkscope() <br/>{<br/>    var scope = 'javascript scope';<br/>  function f() <br/>  { <br/>  return scope; <br/> }<br/> return f;<br/>}",
+        "options": [
+          "Returns the value in scope",
+          "Returns value null",
+          "Shows an error message",
+          "Returns exception"
+        ]
+      },
+      {
+        "qid": "q5",
+        "qdesc": "What will be the result or type of error if p is not defined in the following JavaScript code snippet?",
+        "qsnippet": "console.log(p)",
+        "options": [
+          "Value not found Error",
+          "Reference Error",
+          "Null",
+          "undefined"
+        ]
+      },
+      {
+        "qid": "q6",
+        "qdesc": " Why event handlers is needed in JS?",
+        "qsnippet": "",
+        "options": [
+          "Allows JavaScript code to alter the behaviour of windows",
+          "Adds innerHTML page to the code",
+          "Change the server location",
+          "Performs handling of exceptions and occurrences"
+        ]
+      },
+      {
+        "qid": "q7",
+        "qdesc": "What will be the output of the following JavaScript code?",
+        "qsnippet": "function compare()<br/>{<br/>    let sanfoundry=1;<br/>    let javascript='1';<br/>    if(sanfoundry.toString()===javascript)<br/>    return true;<br/>    else <br/>    return false;<br/>}",
+        "options": ["runtime error", "logical error", "true", "false"]
+      },
+      {
+        "qid": "q8",
+        "qdesc": "Which of the following is not an error in JavaScript?",
+        "qsnippet": "",
+        "options": [
+          "Missing of Bracket",
+          "Division by zero",
+          "Syntax error",
+          "Missing of semicolons"
+        ]
+      },
+      {
+        "qid": "q9",
+        "qdesc": "What is the correct HTML for adding a background color?",
+        "qsnippet": "",
+        "options": [
+          "<body bg='yellow'>",
+          "<background>yellow</background>",
+          "<body style='background-color:yellow;'>"
+        ]
+      },
+      {
+        "qid": "q10",
+        "qdesc": "What is the correct HTML for creating a hyperlink?",
+        "qsnippet": "",
+        "options": [
+          "<a url='http://www.w3schools.com'>W3Schools.com</a>",
+          "<a href='http://www.w3schools.com'>W3Schools</a>",
+          "<a name='http://www.w3schools.com'>W3Schools.com</a>",
+          "<a>http://www.w3schools.com</a>"
+        ]
+      },
+      {
+        "qid": "q11",
+        "qdesc": "How can you open a link in a new tab/browser window?",
+        "qsnippet": "",
+        "options": [
+          "<a href='url' target='new'>",
+          "<a href='url' new>",
+          "<a href='url' target='_blank'>"
+        ]
+      },
+      {
+        "qid": "q12",
+        "qdesc": "Which of these elements are all <table> elements?",
+        "qsnippet": "",
+        "options": [
+          "<table><head><tfoot>",
+          "<table><tr><tt>",
+          "<thead><body><tr>",
+          "<table><tr><td>"
+        ]
+      },
+      {
+        "qid": "q13",
+        "qdesc": "How can you make a numbered list?",
+        "qsnippet": "",
+        "options": ["<list>", "<ul>", "<dl>", "<ol>"]
+      },
+      {
+        "qid": "q14",
+        "qdesc": "What is the correct HTML for making a drop-down list?",
+        "qsnippet": "",
+        "options": [
+          "<select>",
+          "<list>",
+          "<input type='dropdown'>",
+          "<input type='list'>"
+        ]
+      },
+      {
+        "qid": "q15",
+        "qdesc": "What is the correct HTML for inserting an image?",
+        "qsnippet": "",
+        "options": [
+          "<img alt='MyImage'>image.gif</img>",
+          "<img href='image.gif' alt='MyImage'>",
+          "<image src='image.gif' alt='MyImage'>",
+          "<img src='image.gif' alt='MyImage'>"
+        ]
+      },
+      {
+        "qid": "q16",
+        "qdesc": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+        "qsnippet": "",
+        "options": ["src", "longdesc", "alt", "title"]
+      },
+      {
+        "qid": "q17",
+        "qdesc": "Which input type defines a slider control?",
+        "qsnippet": "",
+        "options": ["range", "slider", "controls", "search"]
+      },
+      {
+        "qid": "q18",
+        "qdesc": "In HTML, which attribute is used to specify that an input field must be filled out?",
+        "qsnippet": "",
+        "options": ["validate", "required", "formvalidate", "placeholder"]
+      },
+      {
+        "qid": "q19",
+        "qdesc": "What is the correct HTML for referring to an external style sheet?",
+        "qsnippet": "",
+        "options": [
+          "<stylesheet>mystyle.css</stylesheet>",
+          "<link rel='stylesheet' type='text/css' href='mystyle.css'>",
+          "<style src='mystyle.css'>"
+        ]
+      },
+      {
+        "qid": "q20",
+        "qdesc": "Where in an HTML document is the correct place to refer to an external style sheet?",
+        "qsnippet": "",
+        "options": [
+          "In the <body> section",
+          "At the end of the document",
+          "In the <head> section"
+        ]
+      },
+      {
+        "qid": "q21",
+        "qdesc": "Which is the correct CSS syntax?",
+        "qsnippet": "",
+        "options": [
+          "body:color=black;",
+          "body:color=black;}",
+          "body {color: black;}",
+          "{body;color:black;}"
+        ]
+      },
+      {
+        "qid": "q22",
+        "qdesc": "How do you add a background color for all <h1> elements?",
+        "qsnippet": "",
+        "options": [
+          "all.h1 {background-color:#FFFFFF;}",
+          "h1.all {background-color:#FFFFFF;}",
+          "h1 {background-color:#FFFFFF;}"
+        ]
+      },
+      {
+        "qid": "q23",
+        "qdesc": "Which CSS property is used to change the text color of an element?",
+        "qsnippet": "",
+        "options": ["text-color", "fgcolor", "color"]
+      },
+      {
+        "qid": "q24",
+        "qdesc": "What is the correct CSS syntax for making all the <p> elements bold?",
+        "qsnippet": "",
+        "options": [
+          "<p style='text-size:bold;'>",
+          "p {text-size:bold;}",
+          "<p style='font-size:bold;'>",
+          "p {font-weight:bold;}"
+        ]
+      },
+      {
+        "qid": "q25",
+        "qdesc": "How do you display hyperlinks without an underline?",
+        "qsnippet": "",
+        "options": [
+          "a {underline:none;}",
+          "a {decoration:no-underline;}",
+          "a {text-decoration:none;}",
+          "a {text-decoration:no-underline;}"
+        ]
+      },
+      {
+        "qid": "q26",
+        "qdesc": "How do you make each word in a text start with a capital letter?",
+        "qsnippet": "",
+        "options": [
+          "text-transform:capitalize",
+          "transform:capitalize",
+          "You can't do that with CSS",
+          "text-style:capitalize"
+        ]
+      },
+      {
+        "qid": "q27",
+        "qdesc": "Which property is used to change the font of an element?",
+        "qsnippet": "",
+        "options": ["font-style", "font-weight", "font-family"]
+      },
+      {
+        "qid": "q28",
+        "qdesc": "How do you display a border like this:",
+        "qsnippet": "The top border = 10 pixels<br/> The bottom border = 5 pixels<br/> The left border = 20 pixels<br/> The right border = 1pixel?",
+        "options": [
+          "border-width:10px 20px 5px 1px;",
+          "border-width:10px 5px 20px 1px;",
+          "border-width:10px 1px 5px 20px;",
+          "border-width:5px 20px 10px 1px;"
+        ]
+      },
+      {
+        "qid": "q29",
+        "qdesc": "How do you select all p elements inside a div element?",
+        "qsnippet": "",
+        "options": ["div + p", "div p", "div.p"]
+      },
+      {
+        "qid": "q30",
+        "qdesc": "How do you group selectors?",
+        "qsnippet": "",
+        "options": [
+          "Separate each selector with a space",
+          "Separate each selector with a comma",
+          "Separate each selector with a plus sign"
+        ]
+      },
+      {
+        "qid": "q31",
+        "qdesc": "What is the default value of the position property?",
+        "qsnippet": "",
+        "options": ["relative", "absolute", "static", "fixed"]
+      },
+      {
+        "qid": "q32",
+        "qdesc": "When using the padding property; are you allowed to use negative values?",
+        "qsnippet": "",
+        "options": ["Yes", "No"]
+      },
+      {
+        "qid": "q33",
+        "qdesc": "Is JavaScript case-sensitive?",
+        "qsnippet": "",
+        "options": ["Yes", "No"]
+      },
+      {
+        "qid": "q34",
+        "qdesc": "What will the following code return: Boolean(10 > 9)",
+        "qsnippet": "",
+        "options": ["True", "False"]
+      },
+      {
+        "qid": "q35",
+        "qdesc": "How do you find the number with the highest value of x and y?",
+        "qsnippet": "",
+        "options": [
+          "Math.ceil(x, y)",
+          "Math.max(x, y)",
+          "top(x, y)",
+          "ceil(x, y)"
+        ]
+      },
+      {
+        "qid": "q36",
+        "qdesc": "How do you round the number 7.25, to the nearest integer?",
+        "qsnippet": "",
+        "options": [
+          "Math.round(7.25)",
+          "rnd(7.25)",
+          "round(7.25)",
+          "Math.rnd(7.25)"
+        ]
+      },
+      {
+        "qid": "q37",
+        "qdesc": "What is the output of the following JavaScript program?",
+        "qsnippet": "var a = 20;<br/>function Outer(){<br/> var a = 10;<br/> function Inner(){<br/> console.log(a);<br/> }<br/> return Inner;<br/> }<br/> var Close = Outer();<br/> Close();",
+        "options": ["10", "20", "Type Error", "Syntax Error"]
+      },
+      {
+        "qid": "q38",
+        "qdesc": "What are callbacks in javascript ?",
+        "qsnippet": "",
+        "options": [
+          "Callback function is a simple javascript function.",
+          "A callback is a function which is passed as an argument to another function which can be executed later in the code."
+        ]
+      },
+      {
+        "qid": "q39",
+        "qdesc": "What are Higher Order Functions in javascript ?",
+        "qsnippet": "",
+        "options": [
+          "Higher Order functions are normal javascript functions.",
+          "A function which takes another function as an argument or returns a function as an output."
+        ]
+      },
+      {
+        "qid": "q40",
+        "qdesc": "Local storage and Session storage both are two ways of storing data using key value pairs in web browsers.?",
+        "qsnippet": "",
+        "options": ["True", "False"]
+      },
+      {
+        "qid": "q41",
+        "qdesc": "What is the max storage limit of local storage",
+        "qsnippet": "",
+        "options": ["5MB", "10MB", "50MB", "All of the mentioned."]
+      },
+      {
+        "qid": "q42",
+        "qdesc": "What is the value of 𝐭𝐡𝐢𝐬 in global scope",
+        "qsnippet": "",
+        "options": ["document", "window", "browser", "All of the mentioned."]
+      },
+      {
+        "qid": "q43",
+        "qdesc": "What is event bubbling ?",
+        "qsnippet": "",
+        "options": [
+          "Event bubbling is a type of event propagation where the event first triggers on the innermost target element, and then successively triggers on the ancestors (parents) of the target element in the same nesting hierarchy till it reaches the outermost DOM element.",
+          "Event bubbling is a type of event propagation where the event is first captured by the outermost element, and then successively triggers on the descendants (children) of the target element in the same nesting hierarchy till it reaches the innermost DOM element."
+        ]
+      },
+      {
+        "qid": "q44",
+        "qdesc": "What is event capturing ?",
+        "qsnippet": "",
+        "options": [
+          "Event capturing is a type of event propagation where the event first triggers on the innermost target element, and then successively triggers on the ancestors (parents) of the target element in the same nesting hierarchy till it reaches the outermost DOM element.",
+          "Event capturing is a type of event propagation where the event is first captured by the outermost element, and then successively triggers on the descendants (children) of the target element in the same nesting hierarchy till it reaches the innermost DOM element."
+        ]
+      },
+      {
+        "qid": "q45",
+        "qdesc": "Find method which is not part of Array method?",
+        "qsnippet": "",
+        "options": ["shift()", "concat()", "flat()", "add()"]
+      },
+      {
+        "qid": "q46",
+        "qdesc": "What is output of below logic ?",
+        "qsnippet": "async function foo() {<br/>console.log('A');<br/> await Promise.resolve();<br/>  console.log('B');<br/> await new Promise(resolve => setTimeout(resolve, 0));<br/>  console.log('C');<br/> }<br/> console.log('D');<br/> foo();<br/> console.log('E')",
+        "options": [
+          "D, A, E, B, C",
+          "D, A, C, B, E",
+          "D, A, B, C, E",
+          "D, A, B, C, E"
+        ]
+      },
+      {
+        "qid": "q47",
+        "qdesc": "Guess the output ?",
+        "qsnippet": " let output = (function(x){<br/>delete x;<br/>return x;<br/>})(3);<br/>console.log(output);",
+        "options": ["Error", "3", "2", "NaN"]
+      },
+      {
+        "qid": "q48",
+        "qdesc": "What would be the output of following code ?",
+        "qsnippet": "function getName1(){<br/>console.log(this.name);<br/>}<br/><br/>Object.prototype.getName2 = ()=>{ <br/>console.log(this.name)<br/>}<br/>let personObj={<br/>name:'Tony',<br/>print:getName1}personObj.print();<br/>personObj.getName2();",
+        "options": [
+          "undefined undefined",
+          "undefined Tony",
+          "Tony undefined",
+          "Tony Tony"
+        ]
+      },
+      {
+        "qid": "q49",
+        "qdesc": "What would be the output of following code ?",
+        "qsnippet": "function test() {<br/>  console.log(a);<br/>console.log(foo());<br/>var a = 1;<br/>function foo() {<br/> return 2;<br/> }<br/> }<br/> test();",
+        "options": [
+          "1 , 2",
+          "undefined, 2",
+          "undefined undefined",
+          " Reference Error"
+        ]
+      },
+      {
+        "qid": "q50",
+        "qdesc": "What is the output of below logic ?",
+        "qsnippet": "function job(){<br/>return new Promise((resolve,reject)=>{<br/>reject()<br/>})<br/>}<br/>let promise = job();<br/>promise.then(()=>{<br/>console.log('1111111111')<br/>}).then(()=>{<br/>console.log('22222222222')<br/>}).catch(()=>{<br/>  console.log('3333333333')<br/>}).then(()=>{<br/>console.log('4444444444')<br/>})",
+        "options": [
+          "22222222222, 3333333333",
+          "3333333333, 4444444444",
+          "1111111111, 3333333333",
+          " 22222222222, 4444444444"
+        ]
+      },
+      {
+        "qid": "q51",
+        "qdesc": "Guess the output ?",
+        "qsnippet": "var x = 23;<br/>(function(){<br/>var x = 43;<br/>(function random(){<br/>x++;<br/>console.log(x);<br/>var x = 21;<br/>})();<br/>})();",
+        "options": ["44", "24", "NaN", "Reference Error"]
+      }
+    ]
+  }
+]
+// let newAry = []
+//   function getRandomFromArray(ary,count){
+//     if(count > ary.length) throw new Error('Count exceeds array length');
+//     const indices = new Set();
+//     while(indices.size < count){
+//       indices.add(Math.floor(Math.random()*ary.length));
+//     }
+//     return [...indices]
+//   }
+  
+//   function calculatePercentage() {
+//     // Get values from inputs
+//     const part = parseFloat(document.getElementById('part').value);
+//     const whole = parseFloat(document.getElementById('whole').value);
+  
+//     // Check if values are valid
+//     if (isNaN(part) || isNaN(whole) || whole === 0) {
+//         alert("Please enter valid numbers.");
+//         return;
+//     }
+  
+//     // Calculate percentage
+//     const percentage = Math.round((part / whole) * 100);
+  
+//     // Display result
+//     document.getElementById('result').textContent = `Result: ${percentage.toFixed(2)}%`;
+//   }
