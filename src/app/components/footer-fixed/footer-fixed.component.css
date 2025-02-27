@@ -1,0 +1,10 @@
+.footer{position: fixed;
+    bottom: 0;
+    background: rgb(247, 247, 247);
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+    font-size: 14px;
+    padding: 0 30px;
+}

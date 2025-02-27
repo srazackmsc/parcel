@@ -1,0 +1,25 @@
+.brand_logo1{
+    width:220px;
+    height: 110px;
+    background-image: url('/images/tcs.png');
+    background-repeat: no-repeat;
+}
+.timer{
+    right: 10px;
+    top: 2px;
+    font-weight: bold;
+    color: darkcyan;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+.questionout{
+    left:6%;
+    top:2px;
+    font-weight: bold;
+    color: rgb(90, 7, 58);
+    letter-spacing: 2px;
+    font-size: 24px;
+}
+.correctOption{
+    border: 2px solid green;
+}

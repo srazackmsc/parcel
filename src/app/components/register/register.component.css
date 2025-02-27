@@ -1,0 +1,13 @@
+.mandatory{top: 0;
+position: absolute;
+color: orangered;
+font-size: 14px;
+font-weight: bold;
+right: 10px;
+}
+.card-header{
+    background-color: darkslateblue;
+    color: white;
+}
+.card{border: 2px solid rebeccapurple;}
+.card-body{background-color: #ededf3;}

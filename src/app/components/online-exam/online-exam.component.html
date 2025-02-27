@@ -1,0 +1,213 @@
+@if(!isLoggedUser){
+<section id="authSection">
+  <div class="row mt-4">
+    <div class="col-md-10 m-auto">
+      <h1 class="text-purpel text-center">Welcome to TCS Online Exam</h1>
+      <div class="text-center brand_logo">
+        <img src="images/tcs_logo.png" alt="TCS LOGO" style="width:200px;height: 100px;">
+      </div>
+      <form>
+        <div class="col-md-6 m-auto mt-4 border rounded p-4 pb-1 border-success border-3 border-opacity-50">
+            <div class="text-danger text-center">{{errorMessage}}</div>
+          <div class="mb-3 ps-4 pe-4">
+            <label for="username" class="form-label fw-bold">User Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="username"
+              placeholder="Username"
+              autocomplete="off"
+              [(ngModel)]="authUser.username"
+            />
+          </div>
+          <div class="mb-3 ps-4 pe-4">
+            <label for="user_password" class="form-label fw-bold"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              name="user_password"
+              placeholder="Password"
+              autocomplete="off"
+              [(ngModel)]="authUser.user_password"
+            />
+          </div>
+          <div class="mb-3 text-center">
+            <button
+              type="button"
+              name="enterExam"
+              id="enterExam"
+              class="btn btn-danger"
+              (click)="validateUser()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+}
+@if(isLoggedUser){
+    <div class="row mt-3">
+        <div class="col-md-10 m-auto">
+            <h1 class="text-purpel text-center">Welcome to TCS Online Exam</h1>
+            <div class="text-center brand_logo">
+                <img src="images/tcs_logo.png" alt="TCS LOGO" style="width:200px;height: 100px;">
+              </div>
+            <div class="card mt-4 m-auto p-0 border border-primary-subtle" #downloadTemp>
+                <div class="card-header" style="display:flex;justify-content: space-between;align-items: center;text-align: center;height:70px">
+                    <div class="col-md-4">
+                        <div class="fw-bold fs-5">Name : <span class="text-primary">{{currentUser.fname+" "+currentUser.lname}}</span></div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- <h4>Web Development Exam</h4> -->
+                        <div class="fw-bold">Exam : <span class="text-purpel">{{currentUser.exam_desc}}</span></div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Duration : 60 Mints -->
+                        <div class="fw-bold fs-5">Duration : <span class="text-danger">{{currentUser.duration}} Mints</span></div>
+                    </div>
+                    <!-- <button type="button" (click)="doA()"></button> -->
+                </div>
+                <div class="card-body p-5 pt-3 position-relative">
+                    @if(!paperSubmitted){
+                        <div class="position-absolute timer"><span #timerInterval>00:00:00</span></div>
+                        @if(!isPaperLoaded){
+                        <div class="row mt-3" style="user-select: none;-webkit-user-select: none;">
+                            <div class="col-md-7 m-auto">
+                                <div class="border rounded p-4 pb-1 border-warning border-3 border-opacity-50 d-flex">
+                                    <strong>Note:</strong>
+                                    <ul class="text-danger fw-bold">
+                                        <li>{{notePoints.point1}}</li>
+                                        <li>{{notePoints.point2}}</li>
+                                        <li>{{notePoints.point3}}</li>
+                                        <li>{{notePoints.point4}}</li>
+                                        <li>{{notePoints.point5}}</li>
+                                    </ul>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <button type="button" name="" (click)="startExam()" class="btn btn-danger btn-sm">Start Exam</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @if(isPaperLoaded){
+                            <div class="position-absolute questionout" style="user-select: none;-webkit-user-select: none;">Question {{eachQuestion.sno+1}}/{{totalQuestions}}</div>
+                            <section style="user-select: none;-webkit-user-select: none;">
+                                <div class="col-md-12 mt-5 pt-4" style="font-family: monospace;font-weight: bold;">
+                                    <ul style="list-style: none;font-size: 20px;padding: 0;">
+                                        <li style="margin-left: 40px;"><span class="text-secondary" style="margin-left: -40px;">{{eachQuestion.sno+1}}) </span>{{eachQuestion.qdesc}}</li>
+                                    </ul>
+                                    @if(eachQuestion.qsnippet != undefined && eachQuestion.qsnippet != ""){
+                                        <!-- <pre style="text-align: start;margin: 0 18px;padding: 0 20px;background: #f8f8f9;white-space: normal;"> -->
+                                            <!-- <code> -->
+                                                <p style="text-align: start;margin: 0 18px;padding: 0 20px;background: #f8f8f9;white-space: normal;">
+                                        @for(snippet of eachQuestion.qsnippet.split('<br/>');track snippet){
+                                            <div>{{snippet}}</div>
+                                        }
+                                    </p>
+                                    <!-- </code> -->
+                                    <!-- </code></pre> -->
+                                    }
+                                    <ul style="list-style: none;" class="mt-3">
+                                        @for (item of eachQuestion.options; track item) {
+                                            <li class="mb-2">
+                                                <label>
+                                                    <input type="radio" name="qoption" style="margin-left: -22px;" [(ngModel)]="eachQuestionOpt" [value]="$index">
+                                                    {{item}}
+                                                </label>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="text-center mt-4">
+                                    @if(eachQuestion.sno+1 != totalQuestions){
+                                        <button type="button" id="nextQuestion" name="nextQuestion" [disabled]="(eachQuestionOpt==-1)?true:false" (click)="getNextQuestion(eachQuestion.sno)" class="btn btn-danger">Next</button>
+                                    }
+                                    @if(eachQuestion.sno+1 == totalQuestions){
+                                        <button type="button" id="submitExam" name="submitExam" [disabled]="(eachQuestionOpt==-1)?true:false" (click)="submitExam()" class="btn btn-danger">Submit Exam</button>
+                                    }
+                                </div>
+                            </section>
+                        
+                        }
+                    }
+                    @if(paperSubmitted){
+                        @if(!isResultReady){
+                            <section class="m-5 p-5" style="user-select: none;-webkit-user-select: none;">
+                                <div class="row">
+                                    <h1 class="text-center text-purpel">Loading... Please wait...</h1>
+                                    <div class="col-md-10 text-center m-auto">
+                                <div class="spinner-grow text-primary m-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-secondary m-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-success m-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-danger m-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-warning m-2" role="status">
+                                    <span class="visually-hidden m-2">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-info m-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-primary m-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-dark m-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                </div>
+                                </div>
+                            </section>
+                        }
+                        @if(isResultReady){
+                            <section class="p-5" style="user-select: none;-webkit-user-select: none;">
+                                <h1 class="text-secondary text-center text-success">Exam Results</h1>
+                                <h3 class="text-center">Score : <span class="text-primary" #percentageVal></span></h3>
+                                <div class="row m-5">
+                                    @for(quesnans of submittedQuestions;track quesnans.qid){
+                                        <div class="col-md-12 p-2 border border-primary-subtle mb-4 rounded">
+                                            <h4 class="text-secondary">{{$index+1}}){{quesnans.qdesc}}</h4>
+                                            @if(quesnans.qsnippet != undefined && quesnans.qsnippet != ""){                                                
+                                                <p style="text-align: start;margin: 0 18px;padding: 0 20px;background: #f8f8f9;white-space: normal;">
+                                                    @for(snippet of quesnans.qsnippet.split('<br/>');track snippet){
+                                                        <div>{{snippet}}</div>
+                                                    }
+                                                </p>
+                                            }
+                                            <ul class="m-3">
+                                                @for(opt of quesnans.options;track opt){                                                    
+                                                    @if($index == quesnans.correctAnswer){
+                                                        <li class="correctOption" style="padding:2px 4px">{{opt}}</li>
+                                                    }
+                                                    @if($index != quesnans.correctAnswer){
+                                                        <li  style="padding:2px 4px">{{opt}}</li>
+                                                    }
+                                                    <!-- <li [class]="($index == quesnans.correctAnswer && quesnans.correctAnswer == quesnans.selectedAnswer)?'green':''">{{opt}}</li> -->
+                                                }
+                                            </ul>
+                                            <p class="p-2" [class]="(quesnans.correctAnswer == quesnans.selectedAnswer)?'bg-success-subtle text-success-emphasis':'bg-danger-subtle text-danger-emphasis'">
+                                                <strong>Your Answer :</strong> {{quesnans.options[quesnans.selectedAnswer]}}
+                                            </p>
+                                        </div>
+                                    }
+                                </div>
+                            </section>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        
+}
