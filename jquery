@@ -1,0 +1,75 @@
+JQuery
+---------
+Jquery is one of the most popular,easy to learn, Open Source, cross browser,cross planform,JavaScript library.
+
+OpenSource(Free)
+The original source code is freely available to read,understand,modify,use and extend according to user requirements.
+
+CrossBrowser(Browser independent)
+It works in almost all modern browsers like IE9,Google chrome,Firefox,Safari,Opera etc.
+
+CrossPlatform(Planform Independent):
+It works in alomost all platforms like windows,Linux,MacOS,Android etc.
+
+JavaScript Library(API : Application Program Interface):
+It is written in Javascript.
+It is te collection of pre-witten and reusable Javascript objects,methods(functions),which we can use while designing web sites or developing web applications easily.
+
+Why JQuery
+--------------
+The most important reason behind developing jquery is to simplify client side scripting(i.e coding Javascript)
+Jquery makes thinks like
+. selecting or targeting elements
+. adding styles
+. adding effects,
+. creating animations,
+. event handling,
+. navigating and manipulating DOM tree
+. developing AJAX applications etc. much more than Javascript.
+
+JQuery has changed the way how JavaScript is written by millions of designers and developers around the world.
+Today most of the websites over the net use jquery.
+jquery has a very wide community and forum
+jquery is continuously getting updated.
+
+ History of JQuery
+--------------------------
+Brief history
+--------------
+The most important reason behind developing jquery is to simplify client side scripting(i.e coding Javascript)
+jquery is developed by the jquery team.
+it is initially released in Jan 2006 by Mr. John Resig
+Stable versions of jquery
+In 2016: JQuery 2.2.4
+In 2017 : JQuery 3.2.1
+
+
+
+-----------------------------------------------------------------
+WHAT IS JQUERY
+--------------
+> A fast, small, and feature-rich Javascript library.
+> Simplifies HTML DOM manipulation, event handling, animations and Ajax.
+> " Write Less, Do More " - JQuery's motto.
+
+HISTORY OF JQUERY
+-----------------
+> Created by John Resig in 2006.
+> Released at BarCamp NYC.
+> Become popular due to its ease of use and browser compatibility.
+> Continually updated with new features and improments over the years.
+> Influesnced others libraries and modern JavaScript frameworks.
+> Current stable version is 3.7.1
+
+KEY FEATURES
+----------------------------
+> DOM manipulation.
+> Event handling.
+> Animations and effects.
+> AJAX support.
+> Utility functions for easier coding.
+
+JQUERY'S POPULARITY
+--------------------
+> Used by millions of websites.
+> Open-Source and well documented.
