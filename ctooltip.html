@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .tooltip {
+  position: absolute;
+  display: none;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.tooltip-content {
+  background: #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  /* white-space: nowrap; */
+  font-size: 14px;
+  position: relative;
+      width: 100px;
+    min-width: 150px;
+}
+
+.tooltip-arrow {
+  width: 10px;
+  height: 10px;
+  background: #333;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+/* Arrow for top-left */
+.tooltip[data-position="top-left"] .tooltip-arrow {
+  bottom: -5px;
+  left: 10px;
+}
+
+/* Arrow for bottom-right */
+.tooltip[data-position="bottom-right"] .tooltip-arrow {
+  top: -5px;
+  right: 10px;
+}
+.tooltip[data-position="right"] .tooltip-arrow {
+  top: 8px;
+    /* right: 10px; */
+    left: -4px;
+}
+    </style>
+</head>
+<body>
+    <button class="tooltip-target" data-tooltip="This is a tooltip!" style="position:absolute;top:200px">
+  Hover me
+</button>
+
+<br/>
+   Hover meHover meHover meHover me <button class="tooltip-target" data-tooltip="This is a tooltip!" style="">
+  Hover me
+</button>
+<div id="custom-tooltip" class="tooltip">
+  <div class="tooltip-content"></div>
+  <div class="tooltip-arrow"></div>
+</div>
+<button class="tooltip-target" data-tooltip="This is a tooltip!" style="position:absolute;top:200px">Test</button>
+<p>sdffsdfsdf</p>
+<button data-placement="right" id="test" data-tooltip="This is a tooltip! If there’s not enough room (above or left), it flips to bottom-right." class="tooltip-target">Test123</button>
+<button data-placement="right" class="tooltip-target" data-tooltip="This is a tooltip!" style="position:absolute;top:200px">Test</button>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+<script>
+   /* const tooltip = document.getElementById('custom-tooltip');
+
+document.querySelectorAll('.tooltip-target').forEach(el => {
+  el.addEventListener('mouseenter', (e) => {
+    tooltip.textContent = el.dataset.tooltip;
+    tooltip.style.display = 'block';
+    positionTooltip(e, el);
+  });
+
+  el.addEventListener('mousemove', (e) => {
+    positionTooltip(e, el);
+  });
+
+  el.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+  });
+});
+
+function positionTooltip(event, element) {
+  const padding = 8;
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  let left = event.clientX + padding;
+  let top = event.clientY + padding;
+
+  // Adjust if out of right boundary
+  if (left + tooltipRect.width > viewportWidth) {
+    left = event.clientX - tooltipRect.width - padding;
+  }
+
+  // Adjust if out of bottom boundary
+  if (top + tooltipRect.height > viewportHeight) {
+    top = event.clientY - tooltipRect.height - padding;
+  }
+
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+}
+const tooltip = document.getElementById('custom-tooltip');
+const tooltipContent = tooltip.querySelector('.tooltip-content');
+
+document.querySelectorAll('.tooltip-target').forEach(el => {
+  el.addEventListener('mouseenter', (e) => {
+    tooltipContent.textContent = el.dataset.tooltip;
+    tooltip.style.display = 'block';
+    positionTooltip(e);
+  });
+
+  el.addEventListener('mousemove', (e) => {
+   // positionTooltip(e);
+  });
+
+  el.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+  });
+});
+
+function positionTooltip(event) {
+  const padding = 0;
+  const arrowSize = 8;
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  let left = event.clientX + padding;
+  let top = event.clientY + padding;
+  let position = 'top';
+
+  // Default: show above cursor
+  top = event.clientY - tooltipRect.height - arrowSize;
+
+  // If not enough space above, show below
+  if (top < 0) {
+    top = event.clientY + padding + arrowSize;
+    position = 'bottom';
+  }
+
+  // Adjust horizontal if overflow
+  if (left + tooltipRect.width > viewportWidth) {
+    left = viewportWidth - tooltipRect.width - padding;
+  }
+  if (left < 0) {
+    left = padding;
+  }
+
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+  tooltip.setAttribute('data-position', position);
+}
+*/
+$(document).ready(function () {
+  const $tooltip = $('#custom-tooltip');
+  const $content = $tooltip.find('.tooltip-content');
+
+  $('.tooltip-target').on('mouseenter', function () {
+    const $target = $(this);
+    const tooltipText = $target.data('tooltip');
+    const placement = $target.data('placement');
+    $content.text(tooltipText);
+    $tooltip.show();
+
+    const targetOffset = $target.offset();
+    const targetWidth = $target.outerWidth();
+    const targetHeight = $target.outerHeight();
+    const tooltipWidth = $tooltip.outerWidth();
+    const tooltipHeight = $tooltip.outerHeight();
+    const padding = 8;
+
+    let top = targetOffset.top - tooltipHeight - padding;
+    let left = targetOffset.left;
+    let position = 'top-left';
+
+    // Check if tooltip would overflow above or left
+    const outOfTop = top < $(window).scrollTop();
+    const outOfLeft = left < 0;
+
+    if (outOfTop || outOfLeft) {
+      // fallback to bottom-right
+      top = targetOffset.top + targetHeight + padding;
+      left = targetOffset.left + targetWidth - tooltipWidth;
+      position = 'bottom-right';
+    }
+    if(placement == "right"){
+        top = targetOffset.top;
+        left = targetOffset.left + targetWidth + 10;
+        position = 'right';
+    }
+
+    $tooltip
+      .css({ top: top, left: left })
+      .attr('data-position', position);
+  });
+
+  $('.tooltip-target').on('mouseleave', function () {
+    $tooltip.hide();
+  });
+});
+</script>
+</html>
