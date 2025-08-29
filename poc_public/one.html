@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One</title>
+  </head>
+  <body>
+    <h2>One Link</h2>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <!-- <button id="test" onclick="setPushstate(event)">Test</button>
+    <button id="test" onclick="setPushstate1(event)">Test</button> -->
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", function (e) {
+        history.pushState({}, document.title, location.href);
+        window.onpopstate = function () {
+          window.history.go(1); // Force forward if back is pressed
+        };
+        // Your code here
+        //window.history.pushState(null, "", window.location.href);
+        // setTimeout(function () {
+        //   console.log("setTimeout");
+        //   document.getElementById("test").click();
+        // }, 1000);
+        window.addEventListener("click", function (e) {
+          console.log("click");
+          setPushstate(e);
+        });
+       window.addEventListener('pageshow', function (evt) {console.log(evt);
+           // if (evt.persisted) setup();
+           setPushstate(evt);
+        });
+      });
+      function setPushstate(event) {
+        console.log(event);
+        window.history.pushState({'test':''}, "", window.location.href);
+      }
+      function setPushstate1(event) {
+        console.log(event);
+        setPushstate();
+      }
+    </script> -->
+ <script>
+(function () {
+  function initPreventBack() {
+    try {
+      // Mark the current entry so we can detect when the user tries to go back to it
+      history.replaceState({preventBack: true}, document.title, location.href);
+      // Add a top entry so Back will go to the replaced state
+      history.pushState({}, document.title, location.href);
+    } catch (err) {
+      console.warn('history API not available:', err);
+    }
+  }
+
+  function onPop(e) {
+    // If the popped state is our sentinel, push them back onto this page
+    if (e.state && e.state.preventBack) {
+        
+      // Put them back
+      history.pushState({}, document.title, location.href);
+       window.history.go(1); // Force forward if back is pressed
+      // Optional: show UX hint
+      // alert('Back is disabled on this page.');
+    }
+  }
+
+  function setup() {debugger;
+    initPreventBack();
+    window.removeEventListener('popstate', onPop); // avoid duplicates
+    window.addEventListener('popstate', onPop);
+  }
+debugger;
+  // Run ASAP
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+
+  // If page was restored from bfcache (Chrome back/forward cache), re-run setup
+  window.addEventListener('pageshow', function (evt) {
+    if (evt.persisted) setup();
+  });
+})();
+</script>
+  </body>
+</html>

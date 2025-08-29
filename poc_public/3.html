@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prevent Back on Reload</title>
+  <script>
+    function preventBack() {
+      // Replace current entry with a marker
+      history.replaceState({ noBackExitsApp: true }, "", location.href);
+      // Push dummy entry
+      history.pushState({}, "", location.href);
+
+      // Listen for back navigation
+      window.onpopstate = function (e) {
+        if (e.state && e.state.noBackExitsApp) {
+          // Re-push dummy state
+          history.pushState({}, "", location.href);
+          alert("Back button disabled on this page!");
+        }
+      };
+    }
+
+    // Run on normal load
+    window.addEventListener("DOMContentLoaded", preventBack);
+
+    // Run again if page is restored from bfcache (reload/back-forward cache)
+    window.addEventListener("pageshow", function (evt) {
+      if (evt.persisted) {
+        preventBack();
+      }
+    });
+  </script>
+</head>
+<body onbeforeunload="alert('')">
+  <h1>Back Button Disabled Demo</h1>
+  <p>Try reloading this page and then pressing Back — it should stay here.</p>
+</body>
+</html>

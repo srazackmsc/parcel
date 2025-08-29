@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Window History API Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      line-height: 1.6;
+    }
+    button {
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background: #0078d7;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005a9e;
+    }
+    section {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .spacer {
+      height: 1200px;
+      background: linear-gradient(to bottom, #eee, #ccc);
+    }
+  </style>
+</head>
+<body>
+  <h1>Window History API Demo</h1>
+
+  <section>
+    <h2>1. Prevent Back Button</h2>
+    <button onclick="preventBack()">Activate</button>
+  </section>
+
+  <section>
+    <h2>2. Redirect on Back</h2>
+    <button onclick="redirectOnBack()">Activate</button>
+  </section>
+
+  <section>
+    <h2>3. Replace Current History Entry</h2>
+    <button onclick="replaceEntry()">Replace with /dashboard</button>
+  </section>
+
+  <section>
+    <h2>4. Store Custom Data</h2>
+    <button onclick="pushCustomState(1)">Push Page 1</button>
+    <button onclick="pushCustomState(2)">Push Page 2</button>
+  </section>
+
+  <section>
+    <h2>5. Scroll + Update URL</h2>
+    <p>Scroll down to see the URL change (#top → #section2)</p>
+    <div class="spacer"></div>
+  </section>
+
+  <section>
+    <h2>6. Forward Only Navigation</h2>
+    <button onclick="trapForward()">Trap Back Button</button>
+  </section>
+
+  <section>
+    <h2>7. Confirm Before Leaving</h2>
+    <button onclick="confirmBeforeUnload()">Enable Confirmation</button>
+  </section>
+
+  <script>
+    // 1. Prevent Back Button
+    function preventBack() {
+      history.pushState(null, "", location.href);
+      window.addEventListener("popstate", function () {
+        history.pushState(null, "", location.href);
+        alert("Back is disabled on this page");
+      });
+    }
+
+    // 2. Redirect on Back
+    function redirectOnBack() {
+      window.addEventListener("popstate", function () {
+        location.replace("https://example.com"); // change as needed
+      });
+      alert("Back will now redirect you to example.com");
+    }
+
+    // 3. Replace Current History Entry
+    function replaceEntry() {
+      history.replaceState(null, "", "/dashboard");
+      alert("History entry replaced with /dashboard");
+    }
+
+    // 4. Store Custom Data
+    function pushCustomState(page) {
+      history.pushState({ page }, "Page " + page, "?page=" + page);
+      console.log("Pushed custom state:", page);
+    }
+    window.addEventListener("popstate", function (e) {
+      if (e.state) {
+        console.log("Restored page:", e.state.page);
+      }
+    });
+
+    // 5. Scroll + Update URL
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 500) {
+        history.replaceState(null, "", "#section2");
+      } else {
+        history.replaceState(null, "", "#top");
+      }
+    });
+
+    // 6. Forward Only Navigation
+    function trapForward() {
+      for (let i = 0; i < 100; i++) {
+        history.pushState({}, "", location.href);
+      }
+      alert("Back button is now trapped in forward loop");
+    }
+
+    // 7. Confirm Before Leaving
+    function confirmBeforeUnload() {
+      window.addEventListener("beforeunload", function (e) {
+        e.preventDefault();
+        e.returnValue = "";
+      });
+      alert("Confirmation before leaving is enabled");
+    }
+    document.addEventListener("DOMContentLoaded", function (e) {
+        trapForward();
+    });
+  </script>
+</body>
+</html>

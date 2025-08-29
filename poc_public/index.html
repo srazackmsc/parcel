@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main</title>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="" style="list-style: none">
+        <li>
+          <a href="mid.html">Link 1</a>
+        </li>
+        <li>
+          <a href="two.html">Link 2</a>
+        </li>
+        <li>
+          <a href="3.html">Link 3</a>
+        </li>
+      </ul>
+    </div>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        console.log(window.history);
+        if (window.navigation) {
+          navigation.addEventListener("navigate", (event) => {debugger
+            if (event.navigationType === "back") {
+              console.log("⬅️ Backward navigation");
+            } else if (event.navigationType === "forward") {
+              console.log("➡️ Forward navigation");
+            } else if (event.navigationType === "reload") {
+              console.log("🔄 Reload");
+            } else {
+              console.log("➡️ New navigation");
+            }
+          });
+        }
+        if (document.referrer === location.href) {
+  console.log("Came via Back/Forward");
+} else {
+  console.log("Fresh navigation");
+}
+      });
+      window.addEventListener("pageshow", (event) => {
+      if (event.persisted) {
+        console.log("♻️ Page restored from cache (Back/Forward cache)");
+      } else if (performance.navigation.type === 1) {
+        console.log("🔄 Page Reload");
+      } else if (performance.navigation.type === 0) {
+        console.log("🆕 Fresh Navigation");
+      }
+    });
+    </script>
+  </body>
+</html>
