@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <style>
+      #tooltip {
+        background: #333;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        position: absolute;
+      }
+
+      #arrow {
+        width: 8px;
+        height: 8px;
+        background: #333;
+        position: absolute;
+        transform: translate(56px, 4px) rotate(45deg) !important;
+      }
+      #tooltip {
+        display: none;
+      }
+
+      #tooltip[data-show] {
+        display: block;
+      }
+      [data-popper-placement="bottom"] #arrow {
+        top: -6px;
+      }
+    </style>
+  </head>
+  <body>
+    [x] Custom binding to property or object [x] Custom option, label, header
+    and footer templates [x] Virtual Scroll
+    <button class="btn">Hover me</button>support with large data sets (>5000
+    items). [x] Infinite scroll [x] Keyboard navigation [x] Multiselect [x]
+    Flexible autocomplete with client/server filtering [x] Custom search [x]
+    Custom tags [x] Append to [x] Group items [x] Output events [x]
+    Accessibility [x] Good base functionality test coverage [x] Themes Warning
+    Library is under active development and may have API breaking changes for
+    subsequent major versions after 1.0.0.test coverage [x] Themes Warning
+    Library is under active development and may have API breaking changes for
+    subsequent major versions after 1.0.0.
+    <button class="btn">Hover me</button>[x] Custom binding to property or
+    object [x] Custom option, label, header and footer templates [x] Virtual
+    Scroll support with large data sets (>5000 items). [x] Infinite scroll [x]
+    Keyboard navigation [x] Multiselect [x] Flexible autocomplete with
+    client/server filtering [x] Custom search [x] Custom tags [x] Append to [x]
+    Group items [x] Output events [x] Accessibility [x] Good base functionality
+    test coverage [x] Themes Warning Library is under active development and may
+    have API breaking changes for subsequent major versions after 1.0.0.test
+    coverage [x] Themes Warning Library is under active development and may have
+    API breaking changes for subsequent major versions after 1.0.0.
+    <button class="btn">Hover me</button>[x] Custom binding to property or
+    object [x] Custom option, label, header and footer templates [x] Virtual
+    Scroll support with large data sets (>5000 items). [x] Infinite scroll [x]
+    Keyboard navigation [x] Multiselect [x] Flexible autocomplete with
+    client/server filtering [x] Custom search [x] Custom tags [x] Append to [x]
+    Group items [x] Output events [x] Accessibility [x] Good base functionality
+    test coverage [x] Themes Warning Library is under active development and may
+    have API breaking changes for subsequent major versions after 1.0.0.test
+    coverage [x] Themes Warning Library is under active development and may have
+    API breaking changes for subsequent major versions after 1.0.0.
+    <button class="btn">Hover me</button>[x] Custom binding to property or
+    object [x] Custom option, label, header and footer templates [x] Virtual
+    Scroll support with large data sets (>5000 items). [x] Infinite scroll [x]
+    Keyboard navigation [x] Multiselect [x] Flexible autocomplete with
+    client/server filtering [x] Custom search [x] Custom tags [x] Append to [x]
+    Group items [x] Output events [x] Accessibility [x] Good base functionality
+    test coverage [x] Themes Warning Library is under active development and may
+    have API breaking changes for subsequent major versions after 1.0.0.test
+    coverage [x] Themes Warning Library is under active development and may have
+    API breaking changes for subsequent major versions after 1.0.0.
+    <button class="btn">Hover me</button>[x] Custom binding to property or
+    object [x] Custom option, label, header and footer templates [x] Virtual
+    Scroll support with large data sets (>5000 items). [x] Infinite scroll [x]
+    Keyboard navigation [x] Multiselect [x] Flexible autocomplete with
+    client/server filtering [x] Custom search [x] Custom tags [x] Append to [x]
+    Group items [x] Output events [x] Accessibility [x] Good base functionality
+    test coverage [x] Themes Warning Library is under active development and may
+    have API breaking changes for subsequent major versions after 1.0.0.test
+    coverage [x] Themes Warning Library is under active development and may have
+    API breaking changes for subsequent major versions after 1.0.0.
+    <button class="btn">Hover me</button>
+
+    <div id="tooltip" role="tooltip">
+      Dynamic Tooltip
+      <div id="arrow" data-popper-arrow></div>
+    </div>
+    <script>
+      const buttons = document.querySelectorAll(".btn");
+      const tooltip = document.querySelector("#tooltip");
+      buttons.forEach((button) => {
+        const popperInstance = Popper.createPopper(button, tooltip, {
+          placement: "top",
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+            {
+              name: "flip",
+              options: {
+                fallbackPlacements: ["bottom", "right", "left"],
+              },
+            },
+            {
+              name: "arrow",
+              options: {
+                element: "#arrow",
+              },
+            },
+            {
+              name: "preventOverflow",
+              options: {
+                padding: 8,
+              },
+            },
+          ],
+        });
+        // Hide tooltip
+        button.addEventListener("mouseleave", () => {
+          tooltip.removeAttribute("data-show");
+        });
+        button.addEventListener("mouseenter", () => {
+          tooltip.setAttribute("data-show", "");
+          popperInstance.update();
+        });
+      });
+      // Show tooltip
+      //   buttons.forEach((button) => {
+      //     button.addEventListener("mouseenter", () => {
+      //       tooltip.setAttribute("data-show", "");
+      //       popperInstance.update();
+      //     });
+      //   });
+    </script>
+  </body>
+</html>
