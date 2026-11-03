@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Circle Progress Tracker</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 40px 20px;
+        background: #f8fafc;
+        font-family: Arial, sans-serif;
+      }
+
+      .progress-card {
+        max-width: 750px;
+        margin: auto;
+        background: #fff;
+        padding: 30px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 45px;
+      }
+
+      .progress-header h3 {
+        margin: 0 0 6px;
+        font-size: 19px;
+      }
+
+      .progress-header small {
+        color: #6b7280;
+      }
+
+      .status {
+        padding: 7px 13px;
+        background: #dbeafe;
+        color: #2563eb;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+
+      /* Step container */
+
+      .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      /* Background connecting line */
+
+      .progress-steps::before {
+        content: "";
+        position: absolute;
+        top: 17px;
+        left: 17px;
+        right: 17px;
+        height: 4px;
+        background: #e5e7eb;
+        z-index: 0;
+      }
+
+      /* Animated progress line */
+
+      .progress-line {
+        position: absolute;
+        top: 17px;
+        left: 17px;
+        height: 4px;
+        width: 0;
+        background: #16a34a;
+        z-index: 1;
+        transition: width 0.8s ease-in-out;
+      }
+
+      .step {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      /* Circle */
+
+      .step-circle {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid #d1d5db;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        color: #9ca3af;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.4s ease;
+      }
+
+      /* Active circle */
+
+      .step.active .step-circle {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
+        box-shadow: 0 0 0 5px #dbeafe;
+        transform: scale(1.08);
+      }
+
+      /* Completed circle */
+
+      .step.completed .step-circle {
+        background: #16a34a;
+        border-color: #16a34a;
+        color: #fff;
+      }
+
+      /* Caption */
+
+      .step-caption {
+        font-size: 13px;
+        font-weight: 600;
+        color: #9ca3af;
+        transition: color 0.3s ease;
+      }
+
+      .step.active .step-caption {
+        color: #2563eb;
+      }
+
+      .step.completed .step-caption {
+        color: #16a34a;
+      }
+
+      /* Details */
+
+      .progress-details {
+        margin-top: 35px;
+        padding: 16px;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+      }
+
+      .progress-details h4 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+
+      .progress-details p {
+        margin: 0;
+        color: #6b7280;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 500px) {
+        .progress-card {
+          padding: 18px 12px;
+        }
+
+        .step-caption {
+          font-size: 10px;
+        }
+
+        .step-circle {
+          width: 32px;
+          height: 32px;
+          font-size: 12px;
+        }
+
+        .progress-steps::before,
+        .progress-line {
+          top: 14px;
+          left: 16px;
+        }
+
+        .progress-steps::before {
+          right: 16px;
+        }
+
+        .progress-line {
+          max-width: calc(100% - 32px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="progress-card">
+      <div class="progress-header">
+        <div>
+          <h3>Application Processing</h3>
+          <small>Application ID: APP-2026-00125</small>
+        </div>
+
+        <span class="status" id="status"> In Progress </span>
+      </div>
+
+      <div class="progress-steps">
+        <!-- Background and animated line -->
+        <div class="progress-line" id="progressLine"></div>
+
+        <!-- Upload -->
+        <div class="step active" data-step="0">
+          <div class="step-circle">1</div>
+          <div class="step-caption">Upload</div>
+        </div>
+
+        <!-- Classified -->
+        <div class="step" data-step="1">
+          <div class="step-circle">2</div>
+          <div class="step-caption">Classified</div>
+        </div>
+
+        <!-- Extracted -->
+        <div class="step" data-step="2">
+          <div class="step-circle">3</div>
+          <div class="step-caption">Extracted</div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="step" data-step="3">
+          <div class="step-circle">4</div>
+          <div class="step-caption">Checklist</div>
+        </div>
+      </div>
+
+      <div class="progress-details">
+        <h4 id="stepTitle">Upload Documents</h4>
+        <p id="stepDescription">Application documents are being uploaded.</p>
+      </div>
+    </div>
+
+    <script>
+      const stepData = [
+        {
+          title: "Upload Documents",
+          description: "Application documents are being uploaded.",
+        },
+        {
+          title: "Document Classification",
+          description:
+            "Uploaded documents are categorized based on document type.",
+        },
+        {
+          title: "Data Extraction",
+          description:
+            "Required information is being extracted from documents.",
+        },
+        {
+          title: "Final Checklist",
+          description:
+            "Verifying all extracted information and application requirements.",
+        },
+      ];
+
+      const steps = document.querySelectorAll(".step");
+      const progressLine = document.getElementById("progressLine");
+
+      const stepTitle = document.getElementById("stepTitle");
+      const stepDescription = document.getElementById("stepDescription");
+      const status = document.getElementById("status");
+
+      let currentStep = 0;
+
+      function updateProgress(index) {
+        currentStep = index;
+
+        const totalSteps = steps.length;
+
+        // Calculate connecting line width
+        const progress = (index / (totalSteps - 1)) * 100;
+
+        progressLine.style.width = progress + "%";
+
+        // Update circles and captions
+        steps.forEach((step, i) => {
+          const circle = step.querySelector(".step-circle");
+
+          step.classList.remove("active", "completed");
+
+          if (i < index) {
+            step.classList.add("completed");
+            circle.innerHTML = "&#10003;";
+          } else if (i === index) {
+            step.classList.add("active");
+            circle.textContent = i + 1;
+          } else {
+            circle.textContent = i + 1;
+          }
+        });
+
+        // Update details
+        stepTitle.textContent = stepData[index].title;
+
+        stepDescription.textContent = stepData[index].description;
+
+        // Update status
+        if (index === totalSteps - 1) {
+          status.textContent = "Completed";
+          status.style.background = "#dcfce7";
+          status.style.color = "#15803d";
+        } else {
+          status.textContent = "In Progress";
+          status.style.background = "#dbeafe";
+          status.style.color = "#2563eb";
+        }
+      }
+
+      // Click functionality
+      steps.forEach((step, index) => {
+        step.addEventListener("click", () => {
+          updateProgress(index);
+        });
+      });
+
+      // Initial state
+      updateProgress(0);
+    </script>
+  </body>
+</html>

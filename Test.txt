@@ -478,3 +478,175 @@
 //     // Display result
 //     document.getElementById('result').textContent = `Result: ${percentage.toFixed(2)}%`;
 //   }
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProgressBar</title>
+    <!-- <link rel="stylesheet" href="css/index.css" /> -->
+    <style>
+      .process-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 24px;
+        font-family: Arial, sans-serif;
+      }
+
+      .process-header,
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .process-header h3 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+
+      .process-header small,
+      .step small {
+        color: #6b7280;
+      }
+
+      .status-badge {
+        background: #dbeafe;
+        color: #2563eb;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+
+      .progress-info {
+        margin: 24px 0 8px;
+        font-size: 13px;
+      }
+
+      .progress-track {
+        height: 7px;
+        background: #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .progress-value {
+        height: 100%;
+        background: #16a34a;
+        border-radius: 10px;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+        font-size: 13px;
+      }
+
+      .step-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #e5e7eb;
+        color: #6b7280;
+        font-weight: bold;
+        z-index: 1;
+      }
+
+      .step.completed .step-icon {
+        background: #16a34a;
+        color: white;
+      }
+
+      .step.active .step-icon {
+        background: #2563eb;
+        color: white;
+      }
+
+      .step.completed strong {
+        color: #15803d;
+      }
+
+      .step.active strong {
+        color: #2563eb;
+      }
+
+      .step.active small {
+        color: #2563eb;
+      }
+
+      @media (max-width: 500px) {
+        .process-card {
+          padding: 15px;
+        }
+
+        .step {
+          font-size: 11px;
+        }
+
+        .step-icon {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="process-card">
+      <div class="process-header">
+        <div>
+          <h3>Application Processing</h3>
+          <small>APP-2026-00125</small>
+        </div>
+        <span class="status-badge">In Progress</span>
+      </div>
+
+      <div class="progress-info">
+        <span>Overall Progress</span>
+        <strong>75%</strong>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-value" style="width: 75%"></div>
+      </div>
+
+      <div class="steps">
+        <div class="step completed">
+          <div class="step-icon">✓</div>
+          <strong>Upload</strong>
+          <small>Completed</small>
+        </div>
+
+        <div class="step completed">
+          <div class="step-icon">✓</div>
+          <strong>Classified</strong>
+          <small>Completed</small>
+        </div>
+
+        <div class="step completed">
+          <div class="step-icon">✓</div>
+          <strong>Extracted</strong>
+          <small>Completed</small>
+        </div>
+
+        <div class="step active">
+          <div class="step-icon">4</div>
+          <strong>Checklist</strong>
+          <small>Processing...</small>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
